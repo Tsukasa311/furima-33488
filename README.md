@@ -2,14 +2,16 @@
 
 ## users テーブル
 
-| Column        | Type     | Option      |
-|---------------|----------|-------------|
-| name          | string   | null: false |
-| email         | string   | null: false |
-| password      | string   | null: false |
-| chinese_name  | string   | null: false |
-| japanese_name | string   | null: false |
-| birthday      | integer  | null: false |
+| Column                  | Type     | Option                     |
+|-------------------------|----------|----------------------------|
+| name                    | string   | null: false                |
+| email                   | string   | null: false, unique: true  |
+| encrypted_password      | string   | null: false                |
+| last_name               | string   | null: false                |
+| first_name              | string   | null: false                |
+| last_name_kana          | string   | null: false                |
+| first_name_kana         | string   | null: false                |
+| birthday                | date     | null: false                |
 
 ### Association
 
@@ -23,24 +25,23 @@ user has_many :buys
 | Column        | Type          | Option                         |
 |---------------|---------------|--------------------------------|
 | user_id       | references    | null: false, foreign_key: true |
-| image         | string        | null: false                    |
 | title         | string        | null: false                    |
-| text          | string        | null: false                    |
-| category      | string        | null: false                    |
-| state         | string        | null: false                    |
-| burden        | string        | null: false                    |
-| from          | string        | null: false                    |
-| day           | string        | null: false                    |
+| text          | text          | null: false                    |
+| category_id   | integer       | null: false                    |
+| state_id      | integer       | null: false                    |
+| burden_id     | integer       | null: false                    |
+| from_id       | integer       | null: false                    |
+| day_id        | integer       | null: false                    |
 | charge        | integer       | null: false                    |
 
 ### Association
 
 item belongs_to :user
 item has_many :comments
-item belongs_to :buy
+item has_one :buy
 
 
-## buy テーブル
+## buys テーブル
 
 | Column        | Type          | Option                         |
 |---------------|---------------|--------------------------------|
@@ -51,25 +52,21 @@ item belongs_to :buy
 
 buy belongs_to :user
 buy belongs_to :item
+has_one :buyer
 
 
-## credit テーブル
-
-| Column        | Type          | Option                         |
-|---------------|---------------|--------------------------------|
-| buy_id        | references    | null: false, foreign_key: true |
-
-### Association
-
-credit belongs_to :buy
-
-
-## delivery テーブル
+##  buyersテーブル
 
 | Column        | Type          | Option                         |
 |---------------|---------------|--------------------------------|
 | buy_id        | references    | null: false, foreign_key: true |
+| postcode      | references    | null: false                    |
+| prefecture_id | integer       | null: false                    |
+| city          | string        | null: false                    |
+| block         | string        | null: false                    |
+| building      | string        | null: false                    |
+| phone_number  | boolean       | null: false                    |
 
 ### Association
 
-credit belongs_to :buy
+buyer belongs_to :buy
