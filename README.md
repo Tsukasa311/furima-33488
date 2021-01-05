@@ -24,7 +24,7 @@ user has_many :buys
 
 | Column        | Type          | Option                         |
 |---------------|---------------|--------------------------------|
-| user_id       | references    | null: false, foreign_key: true |
+| user          | references    | null: false, foreign_key: true |
 | title         | string        | null: false                    |
 | text          | text          | null: false                    |
 | category_id   | integer       | null: false                    |
@@ -45,8 +45,8 @@ item has_one :buy
 
 | Column        | Type          | Option                         |
 |---------------|---------------|--------------------------------|
-| user_id       | references    | null: false, foreign_key: true |
-| item_id       | references    | null: false, foreign_key: true |
+| user          | references    | null: false, foreign_key: true |
+| item          | references    | null: false, foreign_key: true |
 
 ### Association
 
@@ -59,13 +59,13 @@ has_one :buyer
 
 | Column        | Type          | Option                         |
 |---------------|---------------|--------------------------------|
-| buy_id        | references    | null: false, foreign_key: true |
-| postcode      | references    | null: false                    |
+| buy           | references    | null: false, foreign_key: true |
+| postcode      | string        | null: false                    |
 | prefecture_id | integer       | null: false                    |
 | city          | string        | null: false                    |
 | block         | string        | null: false                    |
-| building      | string        | null: false                    |
-| phone_number  | boolean       | null: false                    |
+| building      | string        |                                |
+| phone_number  | string        | null: false                    |
 
 ### Association
 
