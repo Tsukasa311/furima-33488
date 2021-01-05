@@ -16,7 +16,6 @@
 ### Association
 
 user has_many :items
-user has_many :comments
 user has_many :buys
 
 
@@ -30,14 +29,13 @@ user has_many :buys
 | category_id   | integer       | null: false                    |
 | state_id      | integer       | null: false                    |
 | burden_id     | integer       | null: false                    |
-| from_id       | integer       | null: false                    |
+| prefecture_id | integer       | null: false                    |
 | day_id        | integer       | null: false                    |
 | charge        | integer       | null: false                    |
 
 ### Association
 
 item belongs_to :user
-item has_many :comments
 item has_one :buy
 
 
