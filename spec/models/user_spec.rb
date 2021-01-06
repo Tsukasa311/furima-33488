@@ -10,11 +10,6 @@ RSpec.describe User, type: :model do
       it 'nicknameからbirthdayまでの入力欄全てが存在するとき' do
         expect(@user).to be_valid
       end
-      it 'passwordに半角英数字がどちらとも含まれていて、かつ6文字以上のとき' do
-        @user.password = "1a2b3c"
-        @user.password_confirmation = @user.password
-        expect(@user).to be_valid
-      end
     end
 
     context '新規登録できない時' do
@@ -27,6 +22,11 @@ RSpec.describe User, type: :model do
         @user.email = nil
         @user.valid?
         expect(@user.errors.full_messages).to include("Email can't be blank")
+      end
+      it 'emailに@が抜けているとき' do
+        @user.email = "aaaaaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
       end
       it 'passwordが空のとき' do 
         @user.password = nil
@@ -85,6 +85,12 @@ RSpec.describe User, type: :model do
       it 'passwordが半角数字だけのとき' do
         @user.password = "123456"
         @user.password_confirmation = "123456"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+      it ' passwordが全角だけのとき' do
+        @user.password = "ＡＡＡ８８８"
+        @user.password_confirmation = 'ＡＡＡ８８８'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is invalid")
       end
