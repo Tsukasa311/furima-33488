@@ -1,6 +1,12 @@
 class ItemsController < ApplicationController
 
+  def index
+  end
+
   def new
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
     @item = Item.new
   end
 
@@ -16,5 +22,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:image, :title,:text,:category_id, :state_id, :burden_id, :prefecture_id, :day_id, :charge).merge(id: current_user.id)
+    params.require(:item).permit(:image, :title,:text,:category_id, :state_id, :burden_id, :prefecture_id, :day_id, :charge).merge(user_id: current_user.id)
+  end
 end
