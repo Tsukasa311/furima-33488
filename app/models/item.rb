@@ -11,7 +11,7 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :title
     validates :text
-    validates :charge, numericality: { greater_than: 299, less_than: 9999999}
+    validates :charge, numericality: { greater_than: 299, less_than: 9_999_999 }
     validates :image
   end
   with_options numericality: { other_than: 1 } do
@@ -21,5 +21,4 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :day_id
   end
-    
 end
