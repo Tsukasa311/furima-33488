@@ -62,7 +62,7 @@ has_one :buyer
 | prefecture_id | integer       | null: false                    |
 | city          | string        | null: false                    |
 | block         | string        | null: false                    |
-| building      | string        |                                |
+| building      | string        | null: false                    |
 | phone_number  | string        | null: false                    |
 
 ### Association
