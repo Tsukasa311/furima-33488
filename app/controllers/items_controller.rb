@@ -8,17 +8,6 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
-  def show
-    @item = Item.find(params[:id])
-  end
-
-  def edit
-    @item = Item.find(params[:id])
-  end
-
-  def update
-  end
-
   def create
     @item = Item.new(item_params)
     if @item.save
@@ -28,10 +17,26 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+    @item = Item.find(params[:id])
+  end
+
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to item_path
+    else
+      render :edit
+    end
+  end
+
   private
 
   def item_params
-    params.require(:item).permit(:image, :title, :text, :category_id, :state_id, :burden_id, :prefecture_id, :day_id,
-                                 :charge).merge(user_id: current_user.id)
+    params.require(:item).permit(:image, :title, :text, :category_id, :state_id, :burden_id, :prefecture_id, :day_id, :charge).merge(user_id: current_user.id)
   end
 end
