@@ -39,7 +39,7 @@ item belongs_to :user
 item has_one :buy
 
 
-## buys テーブル
+## orders テーブル
 
 | Column        | Type          | Option                         |
 |---------------|---------------|--------------------------------|
@@ -57,14 +57,14 @@ has_one :buyer
 
 | Column        | Type          | Option                         |
 |---------------|---------------|--------------------------------|
-| buy           | references    | null: false, foreign_key: true |
+| order         | references    | null: false, foreign_key: true |
 | postcode      | string        | null: false                    |
 | prefecture_id | integer       | null: false                    |
 | city          | string        | null: false                    |
 | block         | string        | null: false                    |
-| building      | string        | null: false                    |
+| building      | string        |                                |
 | phone_number  | string        | null: false                    |
 
 ### Association
 
-buyer belongs_to :buy
+buyer belongs_to :order
