@@ -9,6 +9,7 @@ class OrderItem
     validates :city
     validates :block
     validates :phone_number,       numericality: true
+    validates :token
   end
 
   def save
