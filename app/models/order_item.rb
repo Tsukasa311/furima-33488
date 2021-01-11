@@ -10,6 +10,8 @@ class OrderItem
     validates :block
     validates :phone_number, numericality: { only_integer: true, message: "is invalid. Input half-width characters."} , length: { maximum: 11}
     validates :token
+    validates :user_id
+    validates :item_id
   end
 
   def save

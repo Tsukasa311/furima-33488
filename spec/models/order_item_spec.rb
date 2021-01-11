@@ -66,5 +66,15 @@ RSpec.describe OrderItem, type: :model do
       @order_item.valid?
       expect(@order_item.errors.full_messages).to include("Token can't be blank")
     end
+    it "user_idが空のとき" do
+      @order_item.user_id = nil
+      @order_item.valid?
+      expect(@order_item.errors.full_messages).to include("User can't be blank")
+    end
+    it "item_idが空のとき" do
+      @order_item.item_id = nil
+      @order_item.valid?
+      expect(@order_item.errors.full_messages).to include("Item can't be blank")
+    end
   end
 end
