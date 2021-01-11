@@ -68,3 +68,5 @@ has_one :buyer
 ### Association
 
 buyer belongs_to :order
+
+AAA差分
