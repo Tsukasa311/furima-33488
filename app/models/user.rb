@@ -8,14 +8,15 @@ class User < ApplicationRecord
 
   with_options presence: true do
     validates :nickname
-    validates :last_name, format: { with: VALID_NAME }
-    validates :first_name, format: { with: VALID_NAME }
-    validates :last_name_kana, format: { with: VALID_NAME_KANA }
-    validates :first_name_kana, format: { with: VALID_NAME_KANA }
+    validates :last_name, format: { with: VALID_NAME ,message: "Full-width characters"}
+    validates :first_name, format: { with: VALID_NAME , message: "Full-width characters"}
+    validates :last_name_kana, format: { with: VALID_NAME_KANA , message: "Full-width katakana characters"}
+    validates :first_name_kana, format: { with: VALID_NAME_KANA , message: "Full-width katakana characters"}
     validates :birthday
   end
 
-  validates :password, format: { with: VALID_PASSWORD_REGEX }
+  validates :password, format: { with: VALID_PASSWORD_REGEX , message: "Include both letters and numbers"}
 
   has_many :items
+  has_many :orders
 end
